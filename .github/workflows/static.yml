@@ -6,22 +6,14 @@ on:
       - master
 
 jobs:
-  build-and-deploy:
+  build_vue:
     runs-on: ubuntu-latest
-
+    name: Build Vue
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: '12'
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Install dependencies
-        run: npm install
-        
-      - name: Set Creds
-        run: git config user.name "zidaneiqbal" && git config user.email "raja.zidaneiqbal@gmail.com"
-
-      - name: Deploy
-        run: npm run deploy
+    - uses: actions/checkout@v2
+    - id: Build-Vue
+      uses: xRealNeon/VuePagesAction@1.0.1
+      with:
+        username: 'zidaneiqbal'
+        reponame: 'zee'
+        token: ${{ secrets.GITHUB_TOKEN }} # Leave this line unchanged
