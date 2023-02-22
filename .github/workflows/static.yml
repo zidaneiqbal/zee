@@ -10,20 +10,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '12'
       - name: Checkout code
         uses: actions/checkout@v2
 
       - name: Install dependencies
         run: npm install
         
-      - name: Lint production files
-        run: npm run lint
+      - name: Set Creds
+        run: git config user.name "zidaneiqbal" && git config user.email "raja.zidaneiqbal@gmail.com"
 
-      - name: Build production files
-        run: npm run build
-
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+      - name: Deploy
+        run: npm run deploy
