@@ -1,18 +1,40 @@
 <template>
-  <header>
-    <img
-      alt="Vue logo"
-      class="logo"
-      src="@/assets/logo.svg"
-      width="125"
-      height="125"
-    />
-  </header>
-
-  <RouterView />
+  <div class="home-view" v-if="routeName !== 'about'">
+    <header>
+      <img
+        alt="Vue logo"
+        class="logo"
+        src="@/assets/logo.svg"
+        width="125"
+        height="125"
+      />
+    </header>
+    <RouterView />
+  </div>
+  <RouterView v-else />
 </template>
+<script>
+export default {
+  data() {
+    return {
+      route: this.$route.name,
+    };
+  },
+  computed: {
+    routeName() {
+      return this.$route.name;
+    },
+  },
+};
+</script>
 
 <style scoped>
+.home-view {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 0 2rem;
+}
+
 header {
   line-height: 1.5;
   max-height: 100vh;

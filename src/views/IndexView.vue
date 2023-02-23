@@ -1,6 +1,10 @@
 <template>
-  <div class="about-me">
-    <h2>About Me</h2>
+  <div class="about">
+    <div class="grid">
+      <router-link class="cursor-pointer text-center" :to="{ name: 'about' }">
+        About
+      </router-link>
+    </div>
     <img src="@/assets/prof.jpg" alt="Profile Picture" />
     <p>Bio</p>
     <ul>
@@ -11,6 +15,7 @@
   </div>
 </template>
 <script>
+import { gsap } from "gsap";
 export default {
   data() {
     return {
@@ -18,6 +23,10 @@ export default {
       age: "20",
       location: "Malang",
     };
+  },
+  mounted() {
+    let tl = gsap.timeline();
+    tl.from(".about", { opacity: 0, y: 150, duration: 2 });
   },
 };
 </script>
@@ -29,7 +38,7 @@ section {
   padding: 2rem;
 }
 
-.about-me img {
+.about img {
   width: 200px;
   height: 200px;
   border-radius: 50%;
